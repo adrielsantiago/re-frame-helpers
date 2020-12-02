@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1 {
+  @apply text-2xl
+         mb-5
+         mt-3
+         font-bold;
+}
+
+h3 {
+  @apply text-xl
+         font-bold
+         mb-3;
+}
+
+code, pre {
+  @apply bg-yellow-100;
+}
+
+pre {
+  @apply my-4
+         p-3
+         rounded-md
+         overflow-x-scroll;
+}
+
+table {
+  @apply text-left;
+}
+
+p {
+  @apply my-3;
+}
+
+a {
+  @apply underline;
+}
+
+a:hover {
+  @apply text-gray-700;
+}
