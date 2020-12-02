@@ -19,7 +19,7 @@
                   `(re-frame-helpers.interceptors/inject ~query-vecs))
      :error (when error?
               (apply str "sub injection requires pairs of " sugar-marker
-                     "and query vectors, got:" subs-args))}))
+                     " and query vectors, got:" subs-args))}))
 
 (defmacro defevent [id & args]
   (let [{:keys [handler interceptors injection error]} (parse-args args)]

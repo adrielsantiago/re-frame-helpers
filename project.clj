@@ -1,4 +1,4 @@
-(defproject hzi/re-frame-helpers "0.0.1"
+(defproject hzi/re-frame-helpers "0.0.2"
   :description "Helpers to make life with re-frame easier"
   :url ""
 
