@@ -48,4 +48,5 @@
        (defsub ~id #(get % ~id))
        (defevent ~id
          ~(cond-> merged (some? injection) (conj injection))
-         ~handler))))
+         ~handler)
+       (re-frame.core/dispatch [:xhrio/init-key ~id]))))

@@ -79,15 +79,11 @@
   (->interceptor
    :id :assoc-response
    :after
-   (fn [context]
-     (let [success-mutator (-> context :effects :xhrio/mutate-response)
-           failure-mutator (-> context :effects :xhrio/mutate-error)
-           success-dispatches (-> context
-                                  :effects
-                                  :xhrio/dispatch-n-on-success)
-           failure-dispatches (-> context
-                                  :effects
-                                  :xhrio/dispatch-n-on-failure)]
+   (fn [{:as context :keys [effects coeffects]}]
+     (let [success-mutator (:xhrio/mutate-response effects)
+           failure-mutator (:xhrio/mutate-error effects)
+           success-dispatches (:xhrio/dispatch-n-on-success effects)
+           failure-dispatches (:xhrio/dispatch-n-on-failure effects)]
        (-> context
            (update-in [:effects :http-xhrio]
                       #(merge {:on-success [:xhrio/good-request
@@ -99,5 +95,7 @@
                                             failure-dispatches
                                             failure-mutator]}
                               %))
-           (assoc-in [:effects :db container-key]
-                     {:response nil :loading? true :error nil}))))))
+           (assoc-in [:effects :db] (:db coeffects))
+           (update-in [:effects :db] merge (:db effects))
+           (update-in [:effects :db container-key]
+                      {:response nil :loading? true :error nil}))))))

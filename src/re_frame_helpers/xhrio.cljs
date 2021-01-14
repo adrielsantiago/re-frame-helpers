@@ -27,3 +27,8 @@
                                           :loading? false
                                           :error (mutate? mutate error)})}
       (vector? dispatch-n) (assoc :dispatch-n dispatch-n))))
+
+(defevent
+  :xhrio/init-key
+  (fn [{:keys [db]} [_ container-key]]
+    {:db (assoc db container-key {:response nil :loading? false :error nil})}))
