@@ -1,13 +1,15 @@
-### Run Docs
+### What is re-frame-helpers?
 
-```
-cd docs
-npm install
-npm run serve
-open http://localhost:8080
-```
+A collection of macros and interceptors to help re-frame event and subscription registration. It also provides a macro for easily retrieving and maintaining http request configuration, responses, loading states and errors.
 
-### Use local version in a separate project
+Documentation can be found in the `/docs` directory.
+
+### Push to clojars
+
+`lein deploy clojars`
+(Remember to increment version in `project.clj` to release new version)
+
+### Use local version in a separate project during development
 
 #### Option A
 
@@ -22,8 +24,3 @@ lein install
 
 Create a lein checkout symlink to local version:
 https://github.com/technomancy/leiningen/blob/master/doc/TUTORIAL.md#checkout-dependencies
-
-### Push to clojars
-
-`lein deploy clojars`
-(Remember to increment version in `project.clj` to release new version)
