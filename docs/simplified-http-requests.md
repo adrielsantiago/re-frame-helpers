@@ -19,8 +19,8 @@ In the case of an application calling a backend api to get most of its data, thi
 (ns my.main)
   (:require [re-frame-helpers.xhrio :refer [!xhrio-defaults]])
 
-(set! @!xhrio-defaults {:headers (fn [cofx] (extract-headers cofx))})
-                        :with-credentials false
+(set! !xhrio-defaults {:headers (fn [cofx] (extract-headers cofx))
+                        :with-credentials false})
 
 ;; Re-frame Events File
 (ns my.events
@@ -54,7 +54,7 @@ To make it all easier to grok here is an example of what using this macro might 
 ```
 ;; dispatchers.cljs file
 (ns some.dispatchers
-  (:require [re-frame-helpers.macros :refer [defxhrio] :include-macros true))
+  (:require [re-frame-helpers.macros :refer-macros [defxhrio]))
 
 (defxhrio
   :get-something

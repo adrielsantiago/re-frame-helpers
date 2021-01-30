@@ -24,4 +24,4 @@ NOTE: When referencing the handler, the namespace of the event is left off. You 
 
 ### Sub Injection
 
-See [Event Sub Injection](#event-sub-injection) section below for more details.
+`defevent` provides some syntax sugar for injectiong subscription values into event coeffects. See the `/docs/event-sub-injection.md` for more details.
