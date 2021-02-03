@@ -97,5 +97,5 @@
                               %))
            (assoc-in [:effects :db] (:db coeffects))
            (update-in [:effects :db] merge (:db effects))
-           (update-in [:effects :db container-key]
-                      {:response nil :loading? true :error nil}))))))
+           (assoc-in [:effects :db container-key]
+                     {:response nil :loading? true :error nil}))))))
