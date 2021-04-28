@@ -72,7 +72,7 @@ To make it all easier to grok here is an example of what using this macro might 
     (cond
       loading? ;; show progress bar
       error    ;; show the user an error message
-      data     ;; show the data we want to show from the response
+      response ;; show the response data
 ```
 
 NOTE: We both dispatch the request and get the request results by subscribing to the same key. In the example above that key is `:get-something`, but the key could be any keyword.
