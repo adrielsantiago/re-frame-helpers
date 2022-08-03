@@ -57,23 +57,25 @@
                          inject-key)))))
 
 (def xhrio
-  (->interceptor
-   :id :xhrio
-   :after
-   (fn [{:keys [coeffects] :as context}]
-     (update-in context
-                [:effects :http-xhrio]
-                (fn [xhrio-settings]
-                  (merge {:method           :get
-                          :format           (ajax/json-request-format)
-                          :response-format  (ajax/json-response-format
-                                             {:keywords? true})}
-                         (reduce (fn [acc [prop fn-or-val]]
-                                   (assoc acc prop (if (fn? fn-or-val)
-                                                       (fn-or-val coeffects)
-                                                       fn-or-val)))
-                                 {} (seq @!xhrio-defaults))
-                         xhrio-settings))))))
+ (->interceptor
+  :id :xhrio
+  :after
+  (fn [{:keys [coeffects] :as context}]
+    (when
+     (some? (get-in context [:effects :http-xhrio :uri]))
+      (update-in context
+                 [:effects :http-xhrio]
+                 (fn [xhrio-settings]
+                   (merge {:method           :get
+                           :format           (ajax/json-request-format)
+                           :response-format  (ajax/json-response-format
+                                              {:keywords? true})}
+                          (reduce (fn [acc [prop fn-or-val]]
+                                    (assoc acc prop (if (fn? fn-or-val)
+                                                      (fn-or-val coeffects)
+                                                      fn-or-val)))
+                                  {} (seq @!xhrio-defaults))
+                          xhrio-settings)))))))
 
 (defn assoc-response [container-key]
   (->interceptor
